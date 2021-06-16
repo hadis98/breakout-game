@@ -17,8 +17,8 @@ const endGameBtn = document.getElementById('endGameBtn');
 
 let score = 0;
 let isPlaying = 1;
-const brikRowCount = 1;
-const brickColumnCount = 1;
+const brikRowCount = 9;
+const brickColumnCount = 5;
 const delay = 500; //delay to reset the game
 
 const ball = {
