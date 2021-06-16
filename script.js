@@ -53,7 +53,7 @@ for (let i = 0; i < brikRowCount; i++) {
 function drawBall() {
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.size, 0, Math.PI * 2);
-    ctx.fillStyle = ball.visible ? "#0095dd" : "transparent";
+    ctx.fillStyle = ball.visible ? "#FFBACD" : "transparent";
     ctx.fill();
     ctx.closePath();
 }
@@ -62,7 +62,7 @@ function drawBall() {
 function drawPaddle() {
     ctx.beginPath();
     ctx.rect(paddle.x, paddle.y, paddle.w, paddle.h);
-    ctx.fillStyle = ball.visible ? "#0095dd" : "transparent";
+    ctx.fillStyle = ball.visible ? "#CB0162" : "transparent";
     ctx.fill();
     ctx.closePath();
 }
@@ -78,7 +78,7 @@ function drawBricks() {
         row.forEach((brick) => {
             ctx.beginPath();
             ctx.rect(brick.x, brick.y, brick.w, brick.h);
-            ctx.fillStyle = brick.visible ? "#0095dd" : "transparent";
+            ctx.fillStyle = brick.visible ? "#DA467D" : "transparent";
             ctx.fill();
             ctx.closePath();
         });
@@ -129,8 +129,8 @@ function moveBall() {
                 if (
                     ball.x - ball.size > brick.x &&
                     ball.x + ball.size < brick.x + brick.w &&
-                    ball.y - ball.size > brick.y &&
-                    ball.y + ball.size < brick.y + brick.h
+                    ball.y + ball.size > brick.y &&
+                    ball.y - ball.size < brick.y + brick.h
                 ) {
                     ball.dy *= -1;
                     brick.visible = false;
@@ -145,3 +145,81 @@ function moveBall() {
         score = 0;
     }
 }
+
+// Increase score
+function increaseScore() {
+    score++;
+    if (score % (brikRowCount * brickColumnCount) === 0) {
+        ball.visible = false;
+        paddle.visible = false;
+        // After 1s restart the game
+        setTimeout(() => {
+            showAllBricks();
+            score = 0;
+            paddle.x = canvas.width / 2 - 40;
+            paddle.y = canvas.height - 20;
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+            ball.visible = true;
+            paddle.visible = true;
+        }, 1000);
+    }
+}
+
+// Make all bricks appear
+
+function showAllBricks() {
+    bricks.forEach(row => {
+        row.forEach(brick => {
+            brick.visible = true;
+        })
+    });
+}
+
+function draw() {
+    // clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBall();
+    drawPaddle();
+    drawScore();
+    drawBricks();
+}
+
+function update() {
+    moveBall();
+    movePaddle();
+    draw();
+    requestAnimationFrame(update);
+}
+
+update();
+
+// keydown event
+function keyDown(e) {
+    if (e.key === 'Right' || e.key === 'ArrowRight') {
+        paddle.dx = paddle.speed;
+    } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
+        paddle.dx = -paddle.speed;
+    }
+}
+
+function keyUp(e) {
+    if (e.key === 'Right' ||
+        e.key === 'ArrowRight' ||
+        e.key === 'Left' ||
+        e.key === 'ArrowLeft'
+    ) {
+        paddle.dx = 0;
+    }
+}
+
+document.addEventListener('keydown', keyDown);
+document.addEventListener('keyup', keyUp);
+
+rulesBtn.addEventListener('click', () => {
+    rules.classList.add('show');
+})
+
+closeBtn.addEventListener('click', () => {
+    rules.classList.remove('show');
+})
