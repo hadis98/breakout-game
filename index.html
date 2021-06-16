@@ -11,7 +11,12 @@
 </head>
 
 <body>
+    <div class="box-shadow"></div>
     <h1 id="header">Breakout</h1>
+    <div class="choseState">
+        <button id="startGameBtn">Start</button>
+        <button id="endGameBtn">End</button>
+    </div>
     <button id="rules-btn" class="btn rules-btn">show rules</button>
     <div id="rules" class="rules">
         <h2>How to play</h2>
@@ -22,6 +27,14 @@
         <button id="close-btn" class="btn">Close</button>
     </div>
     <canvas id="canvas" width="800" height="600">hello</canvas>
+    <div class="box-modal">
+        <p>Congragulation :)</p>
+        <p id="box-header">Do You Want To Play Again?</p>
+        <div class="options">
+            <button id="noBtn">No</button>
+            <button id="yesBtn">Yes</button>
+        </div>
+    </div>
 </body>
 
 </html>
