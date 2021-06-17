@@ -12,11 +12,28 @@ body {
     margin: 0;
 }
 
+.game-info {
+    width: 43%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.game-level {
+    font-weight: bolder;
+}
+
+.game-level option,
+.game-level select {
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: 0 !important;
+}
+
 .choseState {
     display: flex;
     justify-content: flex-end;
-    width: 40%;
-    margin-bottom: 2rem;
 }
 
 .choseState button {
@@ -28,7 +45,8 @@ body {
     border-radius: 5px;
 }
 
-.choseState button:focus {
+.choseState button:focus,
+.choseState button:active {
     outline: 0;
 }
 
