@@ -28,7 +28,7 @@ body {
 .game-level select {
     border: 0 !important;
     outline: 0 !important;
-    box-shadow: 0 !important;
+    box-shadow: none !important;
 }
 
 .choseState {
@@ -46,8 +46,12 @@ body {
 }
 
 .choseState button:focus,
-.choseState button:active {
+.choseState button:active,
+.btn:active,
+.btn:focus {
     outline: 0;
+    border: 0;
+    box-shadow: none;
 }
 
 .choseState button:hover {
@@ -64,8 +68,8 @@ body {
 }
 
 .box-modal {
-    width: 25%;
-    height: 30%;
+    width: 35%;
+    height: 50%;
     background-color: rgb(51, 50, 50);
     display: flex;
     flex-direction: column;
@@ -75,7 +79,21 @@ body {
     top: 30%;
     z-index: 100;
     font-size: x-large;
+    box-shadow: 5px 5px 5px 5px rgb(90, 95, 97);
+    animation-name: boxModal;
+    animation-duration: 2s;
     display: none;
+}
+
+@keyframes boxModal {
+    from {
+        width: 25%;
+        height: 40%;
+    }
+    to {
+        width: 35%;
+        height: 50%;
+    }
 }
 
 .box-modal p {
@@ -97,7 +115,6 @@ body {
 
 .box-modal button:hover {
     background-color: #DA467D !important;
-    /* color: rgb(206, 62, 86) !important; */
 }
 
 #header {
@@ -117,10 +134,6 @@ canvas {
     color: #fff;
     background-color: #000;
     border-radius: 5px;
-}
-
-.btn:focus {
-    outline: 0;
 }
 
 .btn:hover {
